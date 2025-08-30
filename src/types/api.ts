@@ -1,7 +1,12 @@
 
 export type ContainerSummaryStateEnum = "running" | "exited" | "paused" | "restarting" | "dead" | string;
 
-export interface ApiContainerSummary {
+export interface ContainerResponse {
+    items: ContainerSummary[],
+    count: number
+}
+
+export interface ContainerSummary {
     id: string;
     name: string;
     image: string;
