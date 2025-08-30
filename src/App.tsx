@@ -1,12 +1,13 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import "./App.css";
+import { SidebarProvider } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/AppSidebar";
+import "@/App.css";
+
 
 function App() {
   return (
-
     <SidebarProvider defaultOpen={true}>
+      <AppSidebar />
       <main >
-        <SidebarTrigger />
       </main>
     </SidebarProvider>
   );
