@@ -1,5 +1,13 @@
-
-export type ContainerSummaryStateEnum = "running" | "exited" | "paused" | "restarting" | "dead" | string;
+// See https://docs.rs/bollard/latest/bollard/models/enum.ContainerSummaryStateEnum.html for reference
+export type ContainerSummaryState =
+    | "" // empty state
+    | "created"
+    | "running"
+    | "paused"
+    | "restarting"
+    | "exited"
+    | "removing"
+    | "dead";
 
 export interface ContainerResponse {
     items: ContainerSummary[],
@@ -10,7 +18,7 @@ export interface ContainerSummary {
     id: string;
     name: string;
     image: string;
-    state: ContainerSummaryStateEnum;
+    state: ContainerSummaryState;
     status: string;
     created: number; // Unix timestamp
 }
