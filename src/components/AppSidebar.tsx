@@ -1,5 +1,6 @@
 import { invoke } from "@tauri-apps/api/core";
 import { useEffect, useState } from "react";
+import { StatusDot } from "@/components/StatusDot";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar"
 import { ContainerResponse, ContainerSummary } from "@/types/api";
 
@@ -24,9 +25,9 @@ export function AppSidebar() {
           <SidebarMenu>
             {containers.map((container: ContainerSummary) =>
               <SidebarMenuItem key={container.id}>
-                <SidebarMenuButton>
+                <SidebarMenuButton asChild>
                   <a href="">
-                    {/* todo add status icon */}
+                    <StatusDot state={container.state} size="sm" />
                     <span>{container.name}</span>
                   </a>
                 </SidebarMenuButton>
