@@ -1,5 +1,20 @@
 use serde::{Deserialize, Serialize};
 
+// Maybe do a crate for common types between backend and frontend?
+#[derive(Copy, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+enum Status {
+    Ok,
+    Down,
+}
+
+#[derive(Serialize, Deserialize)]
+struct HealthResponse {
+    status: Status,
+    version: String,
+    uptime_seconds: u64,
+}
+
 #[derive(Debug, Serialize, Deserialize)]
 struct ContainersResponse {
     items: Vec<ApiContainerSummary>,
@@ -26,6 +41,19 @@ pub struct ApiContainerSummary {
 
     /// The creation timestamp of the container (Unix time).
     pub created: i64,
+}
+
+// use real error handling later instead of just String
+#[tauri::command]
+async fn get_health() -> Result<HealthResponse, String> {
+    let resp = reqwest::get("http://127.0.0.1:3000/health")
+        .await
+        .map_err(|e| e.to_string())?
+        .json::<HealthResponse>()
+        .await
+        .map_err(|e| e.to_string())?;
+
+    Ok(resp)
 }
 
 #[tauri::command]
