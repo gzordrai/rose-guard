@@ -1,7 +1,13 @@
 import { cn } from "@/lib/utils"
-import { ContainerSummaryState, StatusDotProps } from "@/types"
+import { StatusDotEntry, StatusDotProps } from "@/types"
 
-const colorByState: Record<ContainerSummaryState, string> = {
+const colorByState: Record<StatusDotEntry, string> = {
+    // HealthStatus
+    ok: "bg-emerald-500",
+    degraded: "bg-amber-500",
+    down: "bg-rose-500",
+
+    // ContainerSummaryState
     "": "bg-slate-400", // empty state
     created: "bg-slate-400",
     running: "bg-emerald-500",

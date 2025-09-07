@@ -1,9 +1,9 @@
-import { ContainerSummaryState } from "./api";
+import { StatusDotEntry } from "@/types";
 
 export type StatusDotSize = "sm" | "md" | "lg";
 
 export interface StatusDotProps {
-  readonly state: ContainerSummaryState;
+  readonly state: StatusDotEntry;
   readonly size?: StatusDotSize;
   readonly className?: string;
 }

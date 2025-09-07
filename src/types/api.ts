@@ -1,3 +1,8 @@
+export type HealthStatus =
+    | "ok"
+    | "degraded"
+    | "down";
+
 // See https://docs.rs/bollard/latest/bollard/models/enum.ContainerSummaryStateEnum.html for reference
 export type ContainerSummaryState =
     | "" // empty state
@@ -8,6 +13,14 @@ export type ContainerSummaryState =
     | "exited"
     | "removing"
     | "dead";
+
+export type StatusDotEntry = HealthStatus | ContainerSummaryState;
+
+export interface HealthResponse {
+    status: HealthStatus;
+    version: string;
+    uptime_seconds: number;
+}
 
 export interface ContainerResponse {
     items: ContainerSummary[],
